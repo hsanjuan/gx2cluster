@@ -130,7 +130,7 @@ func main() {
 	}
 
 	for _, p := range pins {
-		fmt.Printf("pinning: %s\t%s", p.hash, p.name)
+		fmt.Printf("pinning: %s\t%s\n", p.hash, p.name)
 		err = c.Pin(p.hash, 0, 0, p.name)
 		if err != nil {
 			log.Println(err)
