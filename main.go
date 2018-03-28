@@ -1,16 +1,18 @@
 package main
 
 import (
+	"encoding/hex"
 	"flag"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 
-	cid "github.com/ipfs/go-cid"
-	client "github.com/ipfs/ipfs-cluster/api/rest/client"
-	multiaddr "github.com/multiformats/go-multiaddr"
+	client "gx/ipfs/QmPeXtzF28XQXxA8dPDzoLC6PNGjhnJaCQz7nRRzqCKMdE/ipfs-cluster/api/rest/client"
+	multiaddr "gx/ipfs/QmWWQ2Txc2c6tqjsBpzg5Ar652cHPGNsQQp2SejkNmkUMb/go-multiaddr"
+	cid "gx/ipfs/QmcZfnkapfECQGcLZaf9B79NRg7cRa9EnZh4LSbkCzwNvY/go-cid"
 
 	gx "github.com/whyrusleeping/gx/gxutil"
 )
@@ -112,17 +114,16 @@ func main() {
 
 	cfg.APIAddr = addr
 
-	// Uncomment when supported
-	// if strings.Contain(peer, "/ipfs/") {
-	// 	cfg.PeerAddr = addr
-	// 	if pnet != "" {
-	// 		secret, err := hex.DecodeString(pnet)
-	// 		if err != nil {
-	// 			log.Fatal(err)
-	// 		}
-	// 		cfg.ProtectorKey = secret
-	// 	}
-	// }
+	if strings.Contains(peer, "/ipfs/") {
+		cfg.PeerAddr = addr
+		if pnet != "" {
+			secret, err := hex.DecodeString(pnet)
+			if err != nil {
+				log.Fatal(err)
+			}
+			cfg.ProtectorKey = secret
+		}
+	}
 
 	c, err := client.NewClient(cfg)
 	if err != nil {
