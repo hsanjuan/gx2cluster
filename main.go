@@ -10,9 +10,9 @@ import (
 	"sort"
 	"strings"
 
-	client "gx/ipfs/QmPeXtzF28XQXxA8dPDzoLC6PNGjhnJaCQz7nRRzqCKMdE/ipfs-cluster/api/rest/client"
-	multiaddr "gx/ipfs/QmWWQ2Txc2c6tqjsBpzg5Ar652cHPGNsQQp2SejkNmkUMb/go-multiaddr"
-	cid "gx/ipfs/QmcZfnkapfECQGcLZaf9B79NRg7cRa9EnZh4LSbkCzwNvY/go-cid"
+	cid "github.com/ipfs/go-cid"
+	client "github.com/ipfs/ipfs-cluster/api/rest/client"
+	multiaddr "github.com/multiformats/go-multiaddr"
 
 	gx "github.com/whyrusleeping/gx/gxutil"
 )
