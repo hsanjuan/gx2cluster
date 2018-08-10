@@ -1,10 +1,10 @@
-# gxc
+# gx2cluster
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-> Pin your project&#39;s Gx dependency tree in ipfs-cluster.
+> Pin your project's Gx dependency tree in IPFS Cluster.
 
-Run your `gxc` command in your [Gx'ed](https://github.com/whyrusleeping/gx) project and all your dependencies will be submitted to ipfs-cluster for pinning, correctly named.
+Run your `gx2cluster` command in your [Gx'ed](https://github.com/whyrusleeping/gx) project and all your dependencies will be submitted to ipfs-cluster for pinning, correctly named.
 
 ## Table of Contents
 
@@ -18,8 +18,8 @@ Run your `gxc` command in your [Gx'ed](https://github.com/whyrusleeping/gx) proj
 Safest way is to build manually rewriting gx'ed deps:
 
 ```
-go get -u -d https://github.com/hsanjuan/gxc
-cd $GOPATH/src/github.com/hsanjuan/gxc
+go get -u -d https://github.com/hsanjuan/gx2cluster
+cd $GOPATH/src/github.com/hsanjuan/gx2cluster
 gx install --global
 gx-go rw
 go install
@@ -30,19 +30,19 @@ go install
 Submit to the local, default ipfs-cluster API endpoint (`/ip4/localhost/tcp/9094`)
 
 ```
-$ gxc
+$ gx2cluster
 ```
 
 Submit to your remote ipfs-cluster peer:
 
 ```
-$ gxc --peer <multiaddress>
+$ gx2cluster --peer <multiaddress>
 ```
 
 Other options (`-h`):
 
 ```
-Usage of gxc:
+Usage of gx2cluster:
   -peer string
         multiaddress of the IPFS Cluster API (default "/ip4/127.0.0.1/tcp/9094")
   -pnet string
