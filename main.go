@@ -8,7 +8,6 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
-	"strings"
 
 	cid "github.com/ipfs/go-cid"
 	client "github.com/ipfs/ipfs-cluster/api/rest/client"
@@ -113,16 +112,12 @@ func main() {
 	}
 
 	cfg.APIAddr = addr
-
-	if strings.Contains(peer, "/ipfs/") {
-		cfg.PeerAddr = addr
-		if pnet != "" {
-			secret, err := hex.DecodeString(pnet)
-			if err != nil {
-				log.Fatal(err)
-			}
-			cfg.ProtectorKey = secret
+	if pnet != "" {
+		secret, err := hex.DecodeString(pnet)
+		if err != nil {
+			log.Fatal(err)
 		}
+		cfg.ProtectorKey = secret
 	}
 
 	c, err := client.NewClient(cfg)
