@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/hex"
 	"flag"
 	"fmt"
@@ -8,16 +9,18 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"time"
 
-	cid "github.com/ipfs/go-cid"
-	client "github.com/ipfs/ipfs-cluster/api/rest/client"
-	multiaddr "github.com/multiformats/go-multiaddr"
+	cid "gx/ipfs/QmPSQnBKM9g7BaUcZCvswUJVscQ1ipjmwxN5PXCjkp9EQ7/go-cid"
+	api "gx/ipfs/QmUY1LMFsjmVn1prwerDFJyGpbatfbABj7xGmSCQTL56bM/ipfs-cluster/api"
+	client "gx/ipfs/QmUY1LMFsjmVn1prwerDFJyGpbatfbABj7xGmSCQTL56bM/ipfs-cluster/api/rest/client"
+	multiaddr "gx/ipfs/QmYmsdtJ3HsodkePE3eU3TsCaP2YvPZJ4LoXnNkDE5Tpt7/go-multiaddr"
 
 	gx "github.com/whyrusleeping/gx/gxutil"
 )
 
 type pinArgs struct {
-	hash *cid.Cid
+	hash cid.Cid
 	name string
 }
 
@@ -27,6 +30,7 @@ var (
 	pw   string
 	pnet string
 	ssl  bool
+	wait bool
 )
 
 func init() {
@@ -35,6 +39,7 @@ func init() {
 	flag.StringVar(&pw, "pw", "", "basic auth pw")
 	flag.StringVar(&pnet, "pnet", "", "pnet key")
 	flag.BoolVar(&ssl, "ssl", false, "enable ssl")
+	flag.BoolVar(&wait, "wait", false, "wait for each depedency to be fully pinned")
 }
 
 func main() {
@@ -120,7 +125,7 @@ func main() {
 		cfg.ProtectorKey = secret
 	}
 
-	c, err := client.NewClient(cfg)
+	c, err := client.NewDefaultClient(cfg)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -128,6 +133,18 @@ func main() {
 	for _, p := range pins {
 		fmt.Printf("pinning: %s\t%s\n", p.hash, p.name)
 		err = c.Pin(p.hash, 0, 0, p.name)
+		if err != nil {
+			log.Println(err)
+		}
+		if !wait {
+			continue
+		}
+		_, err = client.WaitFor(context.Background(), c, client.StatusFilterParams{
+			Cid:       p.hash,
+			Target:    api.TrackerStatusPinned,
+			CheckFreq: 500 * time.Millisecond,
+			Local:     false,
+		})
 		if err != nil {
 			log.Println(err)
 		}

@@ -1,23 +1,23 @@
 {
-  "author": "hector",
+  "author": "hsanjuan",
   "bugs": {
-    "url": "https://github.com/hsanjuan/gxc"
+    "url": "https://github.com/hsanjuan/gx2cluster"
   },
   "gx": {
-    "dvcsimport": "github.com/hsanjuan/gxc"
+    "dvcsimport": "github.com/hsanjuan/gx2cluster"
   },
   "gxDependencies": [
     {
       "author": "hsanjuan",
-      "hash": "QmeSwzR49PsxT9wyAKwmxfKUZAJVwFFh1Q7yqJkiaUR8E6",
+      "hash": "QmUY1LMFsjmVn1prwerDFJyGpbatfbABj7xGmSCQTL56bM",
       "name": "ipfs-cluster",
-      "version": "0.4.0"
+      "version": "0.6.0"
     }
   ],
   "gxVersion": "0.12.1",
   "language": "go",
-  "license": "",
-  "name": "gxc",
+  "license": "MIT",
+  "name": "gx2cluster",
   "releaseCmd": "git commit -a -m \"gx publish $VERSION\"",
   "version": "0.0.0"
 }
