@@ -11,9 +11,9 @@ import (
 	"sort"
 	"time"
 
-	cid "gx/ipfs/QmPSQnBKM9g7BaUcZCvswUJVscQ1ipjmwxN5PXCjkp9EQ7/go-cid"
-	api "gx/ipfs/QmUY1LMFsjmVn1prwerDFJyGpbatfbABj7xGmSCQTL56bM/ipfs-cluster/api"
-	client "gx/ipfs/QmUY1LMFsjmVn1prwerDFJyGpbatfbABj7xGmSCQTL56bM/ipfs-cluster/api/rest/client"
+	cid "github.com/ipfs/go-cid"
+	api "github.com/ipfs/ipfs-cluster/api"
+	client "github.com/ipfs/ipfs-cluster/api/rest/client"
 	multiaddr "gx/ipfs/QmYmsdtJ3HsodkePE3eU3TsCaP2YvPZJ4LoXnNkDE5Tpt7/go-multiaddr"
 
 	gx "github.com/whyrusleeping/gx/gxutil"
