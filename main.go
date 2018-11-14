@@ -14,7 +14,7 @@ import (
 	cid "github.com/ipfs/go-cid"
 	api "github.com/ipfs/ipfs-cluster/api"
 	client "github.com/ipfs/ipfs-cluster/api/rest/client"
-	multiaddr "gx/ipfs/QmYmsdtJ3HsodkePE3eU3TsCaP2YvPZJ4LoXnNkDE5Tpt7/go-multiaddr"
+	multiaddr "github.com/multiformats/go-multiaddr"
 
 	gx "github.com/whyrusleeping/gx/gxutil"
 )
